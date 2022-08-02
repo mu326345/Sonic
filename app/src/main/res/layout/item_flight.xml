@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="flight"
+            type="com.yuyu.sonic.data.FlightDataItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/flight_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:flightNum="@{flight.flight_number}"
+            app:layout_constraintEnd_toStartOf="@+id/flight_img"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Flight 1" />
+
+        <TextView
+            android:id="@+id/mission_name_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{flight.mission_name}"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/flight_tv"
+            app:layout_constraintStart_toStartOf="@id/flight_tv"
+            app:layout_constraintTop_toBottomOf="@id/flight_tv"
+            tools:text="FalconSat" />
+
+        <TextView
+            android:id="@+id/date_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/mission_name_tv"
+            app:layout_constraintStart_toStartOf="@id/mission_name_tv"
+            app:layout_constraintTop_toBottomOf="@id/mission_name_tv"
+            app:toDate="@{flight.launch_date_unix}"
+            tools:text="25/03/2006 06:30:00" />
+
+        <ImageView
+            android:id="@+id/flight_img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/date_tv"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/flight_tv"
+            app:toImage="@{String.valueOf(flight.links.mission_patch_small)}"
+            tools:srcCompat="@tools:sample/avatars" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
