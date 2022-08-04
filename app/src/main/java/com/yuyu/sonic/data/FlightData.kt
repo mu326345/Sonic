@@ -54,10 +54,10 @@ data class LaunchSite(
 )
 
 data class Links(
-    val article_link: Any?,
+    val article_link: String?,
     val flickr_images: List<Any>?,
-    val mission_patch: Any?,
-    val mission_patch_small: Any?,
+    val mission_patch: String?,
+    val mission_patch_small: String?,
     val presskit: Any?,
     val reddit_campaign: Any?,
     val reddit_launch: Any?,
@@ -132,15 +132,15 @@ data class SecondStage(
 
 data class Core(
     val block: Int?,
-    val core_serial: Any?,
+    val core_serial: String?,
     val flight: Int?,
     val gridfins: Any?,
-    val land_success: Any?,
+    val land_success: Boolean?,
     val landing_intent: Any?,
     val landing_type: Any?,
     val landing_vehicle: Any?,
     val legs: Any?,
-    val reused: Any?
+    val reused: Boolean?
 )
 
 data class Payload(

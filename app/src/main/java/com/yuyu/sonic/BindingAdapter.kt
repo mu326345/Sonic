@@ -28,26 +28,27 @@ fun transToDate(textView: TextView, date: Long) {
 }
 
 @BindingAdapter("reused")
-fun isReused(textView: TextView, isReused: Any) {
-    isReused as Boolean
-    if(isReused) {
-        textView.text = textView.context.getString(R.string.yes)
+fun isReused(textView: TextView, isReused: Boolean?) {
+    if (isReused == null) {
+        textView.text = textView.context.getString(R.string.no_info)
     } else {
-        textView.text = textView.context.getString(R.string.no)
+        if (isReused) {
+            textView.text = textView.context.getString(R.string.yes)
+        } else {
+            textView.text = textView.context.getString(R.string.no)
+        }
     }
 }
 
 @BindingAdapter("landing")
-fun landing(textView: TextView, isLanding: Any?) {
-    if (isLanding is Boolean) {
-        textView.text = isLanding.let {
-            if(it) {
-                textView.context.getString(R.string.yes)
-            } else {
-                textView.context.getString(R.string.no)
-            }
-        }
-    } else {
+fun landing(textView: TextView, isLanding: Boolean?) {
+    if(isLanding == null) {
         textView.text = textView.context.getString(R.string.no_info)
+    } else {
+        if (isLanding) {
+            textView.text = textView.context.getString(R.string.yes)
+        } else {
+            textView.text = textView.context.getString(R.string.no)
+        }
     }
 }

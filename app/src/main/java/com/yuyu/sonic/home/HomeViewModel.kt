@@ -3,20 +3,19 @@ package com.yuyu.sonic.home
 import android.util.Log
 import androidx.lifecycle.*
 import com.yuyu.sonic.data.FlightDataItem
+import com.yuyu.sonic.data.OrderState
 import com.yuyu.sonic.repository.IRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class HomeViewModel(val repository: IRepository): ViewModel() {
+class HomeViewModel(val repository: IRepository) : ViewModel() {
 
-    private val _flight = MutableLiveData<List<FlightDataItem>>()
-    val flight: LiveData<List<FlightDataItem>>
-        get() = _flight
+    private val _checkState = MutableLiveData<OrderState>()
+    val checkState: LiveData<OrderState>
+        get() = _checkState
 
-    val flightItem = Transformations.map(flight) {
-//        it.data
-        it
-    }
+    var newest: List<FlightDataItem>? = null
+    var oldest: List<FlightDataItem>? = null
 
     init {
         getFlightData()
@@ -25,8 +24,14 @@ class HomeViewModel(val repository: IRepository): ViewModel() {
     private fun getFlightData() {
         viewModelScope.launch(Dispatchers.IO) {
             repository.getFlightData {
-                _flight.value = it
+                newest = it.sortedByDescending { it.flight_number }
+                oldest = it
+                _checkState.value = OrderState.OLDEST
             }
         }
+    }
+
+    fun updateState(state: OrderState) {
+        _checkState.value = state
     }
 }

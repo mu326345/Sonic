@@ -19,7 +19,6 @@ import com.yuyu.sonic.databinding.ItemCoresBinding
 class DetailFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailBinding
-    private lateinit var coresBinding: ItemCoresBinding
     private val viewModel by viewModels<DetailViewModel>()
 
     override fun onCreateView(
@@ -30,10 +29,6 @@ class DetailFragment : Fragment() {
         binding = FragmentDetailBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-
-        coresBinding = ItemCoresBinding.inflate(inflater, container, false)
-        coresBinding.lifecycleOwner = viewLifecycleOwner
-        coresBinding.viewModel = viewModel
 
         binding.coresItem.lifecycleOwner = viewLifecycleOwner
         binding.coresItem.viewModel = viewModel

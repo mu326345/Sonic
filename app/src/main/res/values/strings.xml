@@ -17,4 +17,8 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
+    <string name="sort_by">Sort by:</string>
+    <string name="newest">Flight number: newest</string>
+    <string name="oldest">Flight number: oldest</string>
+
 </resources>
