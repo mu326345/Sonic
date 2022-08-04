@@ -1,6 +1,6 @@
 package com.yuyu.sonic
 
-import android.view.View
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -19,8 +19,35 @@ fun urlToImage(view: ImageView, url: String) {
 }
 
 @BindingAdapter("toDate")
-fun transToDate(text: TextView, date: Long) {
-    val formatter = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH)
+fun transToDate(textView: TextView, date: Long) {
+    val formatter = SimpleDateFormat("dd/MM/yyyy HH:mm:ss").apply {
+        timeZone = TimeZone.getTimeZone("Asia/Taipei")
+    }
     val formateDate = formatter.format(Date(date * 1000))
-    text.text = formateDate.toString()
+    textView.text = formateDate.toString()
+}
+
+@BindingAdapter("reused")
+fun isReused(textView: TextView, isReused: Any) {
+    isReused as Boolean
+    if(isReused) {
+        textView.text = textView.context.getString(R.string.yes)
+    } else {
+        textView.text = textView.context.getString(R.string.no)
+    }
+}
+
+@BindingAdapter("landing")
+fun landing(textView: TextView, isLanding: Any?) {
+    if (isLanding is Boolean) {
+        textView.text = isLanding.let {
+            if(it) {
+                textView.context.getString(R.string.yes)
+            } else {
+                textView.context.getString(R.string.no)
+            }
+        }
+    } else {
+        textView.text = textView.context.getString(R.string.no_info)
+    }
 }

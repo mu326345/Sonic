@@ -6,9 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yuyu.sonic.Application
+import com.yuyu.sonic.R
 import com.yuyu.sonic.databinding.FragmentHomeBinding
 import com.yuyu.sonic.factory.ViewModelFactory
 
@@ -29,17 +32,13 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
-        adapter = HomeAdapter()
+        adapter = HomeAdapter {
+            findNavController().navigate(R.id.action_homeFragment_to_detailFragment, Bundle().apply {
+                putParcelable("flight", it)
+            })
+        }
         binding.flightRecycler.adapter = adapter
         binding.flightRecycler.layoutManager = LinearLayoutManager(requireContext())
-
-        val aaList = listOf(
-            Aaaa("s", "s", "a"),
-            Aaaa("a", "a", "a"),
-            Aaaa("f", "f", "f"),
-            Aaaa("b", "b", "b"),
-            Aaaa("f", "q", "q"),
-        )
 
         viewModel.flightItem.observe(viewLifecycleOwner) {
             adapter.submitList(it)
@@ -47,7 +46,4 @@ class HomeFragment : Fragment() {
 
         return binding.root
     }
-
 }
-
-data class Aaaa(val one: String, val two: String, val three: String)

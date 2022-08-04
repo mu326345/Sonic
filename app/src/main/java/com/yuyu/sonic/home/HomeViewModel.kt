@@ -25,7 +25,6 @@ class HomeViewModel(val repository: IRepository): ViewModel() {
     private fun getFlightData() {
         viewModelScope.launch(Dispatchers.IO) {
             repository.getFlightData {
-                Log.v("QAQ", "$it")
                 _flight.value = it
             }
         }

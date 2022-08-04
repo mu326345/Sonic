@@ -1,14 +1,13 @@
 package com.yuyu.sonic.data
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 
-
-//data class FlightData(
-//    val data: List<FlightDataItem>
-//)
-
+@Parcelize
 data class FlightDataItem(
-    val crew: List<Any>?,
+    val crew: @RawValue List<Any>?,
     val details: String?,
     val flight_number: Int?,
     val is_tentative: Boolean?,
@@ -22,24 +21,25 @@ data class FlightDataItem(
     val launch_date_source: String?,
     val launch_date_unix: Long?,
     val launch_date_utc: String?,
-    val launch_failure_details: LaunchFailureDetails?,
-    val launch_site: LaunchSite?,
+    val launch_failure_details: @RawValue LaunchFailureDetails?,
+    val launch_site: @RawValue LaunchSite?,
     val launch_success: Boolean?,
     val launch_window: Int?,
     val launch_year: String?,
-    val links: Links?,
-    val mission_id: List<Any>?,
+    val links: @RawValue Links?,
+    val mission_id: @RawValue List<Any>?,
     val mission_name: String?,
-    val rocket: Rocket?,
-    val ships: List<Any>?,
+    val rocket: @RawValue Rocket?,
+    val ships: @RawValue List<Any>?,
     val static_fire_date_unix: Int?,
     val static_fire_date_utc: String?,
     val tbd: Boolean?,
-    val telemetry: Telemetry?,
+    val telemetry: @RawValue Telemetry?,
     val tentative_max_precision: String?,
-    val timeline: Timeline?,
+    val timeline: @RawValue Timeline?,
     val upcoming: Boolean?
-)
+) : Parcelable
+
 
 data class LaunchFailureDetails(
     val altitude: Int?,
@@ -133,7 +133,7 @@ data class SecondStage(
 data class Core(
     val block: Int?,
     val core_serial: Any?,
-    val flight: Any?,
+    val flight: Int?,
     val gridfins: Any?,
     val land_success: Any?,
     val landing_intent: Any?,

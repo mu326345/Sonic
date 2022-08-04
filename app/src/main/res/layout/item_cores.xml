@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.yuyu.sonic.detail.DetailViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cores_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/core_serial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{String.valueOf(viewModel.coreData.core_serial)}"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Merlin1A" />
+
+        <TextView
+            android:id="@+id/block_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/block"
+            app:layout_constraintEnd_toStartOf="@+id/flight_tv"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/core_serial" />
+
+        <TextView
+            android:id="@+id/block"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/block_tv"
+            app:layout_constraintStart_toStartOf="@id/block_tv"
+            app:layout_constraintTop_toBottomOf="@id/block_tv"
+            android:text="@{String.valueOf(viewModel.coreData.block) ?? @string/no_info}"
+            tools:text="No info" />
+
+        <TextView
+            android:id="@+id/reused_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/reused"
+            app:layout_constraintEnd_toEndOf="@id/block_tv"
+            app:layout_constraintStart_toStartOf="@id/block_tv"
+            app:layout_constraintTop_toBottomOf="@id/block" />
+
+        <TextView
+            android:id="@+id/reused"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/reused_tv"
+            app:layout_constraintStart_toStartOf="@id/reused_tv"
+            app:layout_constraintTop_toBottomOf="@id/reused_tv"
+            app:reused="@{viewModel.coreData.reused}"
+            tools:text="No" />
+
+        <TextView
+            android:id="@+id/flight_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/flight"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/block_tv"
+            app:layout_constraintTop_toTopOf="@id/block_tv" />
+
+        <TextView
+            android:id="@+id/flight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@{String.valueOf(viewModel.coreData.flight)}"
+            app:layout_constraintEnd_toEndOf="@id/flight_tv"
+            app:layout_constraintStart_toStartOf="@id/flight_tv"
+            app:layout_constraintTop_toBottomOf="@id/flight_tv"
+            tools:text="1" />
+
+        <TextView
+            android:id="@+id/landing_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/landing"
+            app:layout_constraintEnd_toEndOf="@id/flight_tv"
+            app:layout_constraintStart_toStartOf="@id/flight_tv"
+            app:layout_constraintTop_toBottomOf="@id/flight" />
+
+        <TextView
+            android:id="@+id/landing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textStyle="bold"
+            app:landing="@{viewModel.coreData.land_success}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/landing_tv"
+            app:layout_constraintStart_toStartOf="@id/landing_tv"
+            app:layout_constraintTop_toBottomOf="@id/landing_tv"
+            tools:text="No Info" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

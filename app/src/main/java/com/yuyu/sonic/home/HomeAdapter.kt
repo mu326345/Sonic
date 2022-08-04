@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.yuyu.sonic.data.FlightDataItem
 import com.yuyu.sonic.databinding.ItemFlightBinding
 
-class HomeAdapter : ListAdapter<FlightDataItem, HomeAdapter.HomeViewHolder>(DiffCallback) {
+class HomeAdapter(val clickListener: (flightDat: FlightDataItem) -> Unit) : ListAdapter<FlightDataItem, HomeAdapter.HomeViewHolder>(DiffCallback) {
 
     class HomeViewHolder(private val binding: ItemFlightBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: FlightDataItem) {
@@ -24,6 +24,10 @@ class HomeAdapter : ListAdapter<FlightDataItem, HomeAdapter.HomeViewHolder>(Diff
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
+
+        holder.itemView.setOnClickListener {
+            clickListener(item)
+        }
     }
 
     object DiffCallback : DiffUtil.ItemCallback<FlightDataItem>() {
